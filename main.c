@@ -61,17 +61,17 @@ int main()
 
 	printf( "Main Function:\n" );
 	printf( "*****Print All*****\n" );
-	printf( "%s\n", msg + 32 );
-	printf( "%d   %s\n", id1, msg + 64 );
-	printf( "%d   %s\n", id2, msg + 96 );
-	printf( "%d   %s\n", id3, msg + 128 );
+	printf( "%s", msg + 32 );
+	printf( "%d   %s", id1, msg + 64 );
+	printf( "%d   %s", id2, msg + 96 );
+	printf( "%d   %s", id3, msg + 128 );
 	printf( "ID Summation = %d\n", sum );
 	printf( "*****End Print*****\n" );
 
 
-	printf( "\n***** Please enter p to draw Julia Set animation *****\n" );
+	printf( "\n***** Please enter d to draw Julia Set animation *****\n" );
 	// 等待使用者輸入正確指令
-	while(getchar()!='p') {}
+	while(getchar()!='d') {}
 
 	// 清除畫面
 	system( "clear" );
@@ -100,10 +100,10 @@ int main()
 		//Dummy printout. Please refer to the specification of Project 1.
 
 		printf( ".*.*.*.<:: Happy New Year ::>.*.*.*.\n" );
-		printf( "by %s\n", msg + 32 );
-		printf( "%d   %s\n", id1, msg + 64 );
-		printf( "%d   %s\n", id2, msg + 96 );
-		printf( "%d   %s\n", id3, msg + 128 );
+		printf( "by %s", msg + 32 );
+		printf( "%d   %s", id1, msg + 64 );
+		printf( "%d   %s", id2, msg + 96 );
+		printf( "%d   %s", id3, msg + 128 );
 
 		// 關閉 Device Node檔案，結束驅動程式的使用
 		close( fd );
