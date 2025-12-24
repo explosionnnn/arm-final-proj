@@ -8,6 +8,40 @@ drawJuliaSet:
     @ Save registers
     stmfd sp!, {r4-r11, lr}
 
+    @ Register mapping:
+    @ r4: x
+    @ r5: y
+    @ r6: width
+    @ r7: height
+    @ r8: cX
+    @ r9: cY
+    @ r10: frame pointer
+    @ r11: maxIter (255)
+
+    mov r7, lr
+    mrs r6, cpsr
+    @the fourth instruction
+    adds lr, sp, pc
+    msr cpsr_f, r6
+    mov lr, r7
+
+    @three condition execution
+    moveq r8, r8
+    movne r8, r8
+    movge r8, r8
+
+    mov r8, #128
+    mov r7, #128
+    mov r9, #6
+    mov r8, r7, lsl, #6
+    mov r7, r8, asr, #6
+    mov r7, r8, lsl, r9
+    mov r8, r7, asr, r9
+    @r8 not change
+    mov r8, r8, ror, #16
+    mov r8, r8, ror, #16
+
+
     @ Stack layout:
     @ [sp, #36] -> frame pointer (arg5)
 
@@ -20,17 +54,6 @@ drawJuliaSet:
     @ [sp, #8]: i
     @ [sp, #12]: tmp
     sub sp, sp, #16
-
-    @ Register mapping:
-    @ r4: x
-    @ r5: y
-    @ r6: width
-    @ r7: height
-    @ r8: cX
-    @ r9: cY
-    @ r10: frame pointer
-    @ r11: maxIter (255)
-
     @ Move arguments to preserved registers
     mov r8, r0
     mov r9, r1
