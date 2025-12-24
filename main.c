@@ -23,13 +23,13 @@
  *  cY 為 Julia set數學式中複數 "c" 的虛部
  *  調整cX(值域:-1.0~1.0)與cY(值域:0.0~1.0)可得到不同的圖形
  *
- 
+
 *************************************************************/
 
 
 int main()
 {
-	//RGB16 
+	//RGB16
 	int16_t frame[FRAME_HEIGHT][FRAME_WIDTH];
 
 	int max_cX = -700;
@@ -53,9 +53,9 @@ int main()
 
 	//Dummy Function. Please refer to the specification of Project 1.
 	name();
-	
+
 	printf( "Function2: ID\n" );
-	
+
 	//Dummy Function. Please refer to the specification of Project 1.
 	ID();
 
@@ -85,26 +85,26 @@ int main()
 	{
 		for( cY=400 ; cY>=min_cY; cY = cY + cY_step ) {
 
-			// 計算目前cX,cY參數下的Julia set畫面			
-			drawJuliaSet( cX, cY, FRAME_WIDTH, FRAME_HEIGHT, frame );
+			// 計算目前cX,cY參數下的Julia set畫面
+			drawJuliaSet( cX, cY, FRAME_WIDTH, FRAME_HEIGHT, &frame[0][0] );
 
 			// 透過低階I/O操作呼叫Frame Buffer的驅動程式
 			// (將畫面資料寫入Frame Buffer)
-			write( fd, frame, sizeof(int16_t)*FRAME_HEIGHT*FRAME_WIDTH );
+			write( fd, &frame[0][0], sizeof(int16_t)*FRAME_HEIGHT*FRAME_WIDTH );
 
 			// 移動檔案操作位置至最前端，以便下一次的畫面重新寫入
 			lseek( fd, 0, SEEK_SET );
 		}
 
 
-		//Dummy printout. Please refer to the specification of Project 1. 
-		
+		//Dummy printout. Please refer to the specification of Project 1.
+
 		printf( ".*.*.*.<:: Happy New Year ::>.*.*.*.\n" );
 		printf( "by %s\n", msg + 32 );
 		printf( "%d   %s\n", id1, msg + 64 );
 		printf( "%d   %s\n", id2, msg + 96 );
 		printf( "%d   %s\n", id3, msg + 128 );
-		
+
 		// 關閉 Device Node檔案，結束驅動程式的使用
 		close( fd );
 	}
