@@ -33,13 +33,13 @@ drawJuliaSet:
     mov r8, #128
     mov r7, #128
     mov r9, #6
-    mov r8, r7, lsl, #6
-    mov r7, r8, asr, #6
-    mov r7, r8, lsl, r9
-    mov r8, r7, asr, r9
+    mov r8, r7, lsl #6
+    mov r7, r8, asr #6
+    mov r7, r8, lsl r9
+    mov r8, r7, asr r9
     @r8 not change
-    mov r8, r8, ror, #16
-    mov r8, r8, ror, #16
+    mov r8, r8, ror #16
+    mov r8, r8, ror #16
 
 
     @ Stack layout:
@@ -181,4 +181,4 @@ next_x:
 
 end_draw:
     add sp, sp, #16
-    ldmfd sp!, {r4-r12, pc}
+    ldmfd sp!, {r4-r11, pc}
