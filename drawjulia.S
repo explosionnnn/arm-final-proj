@@ -25,22 +25,6 @@ drawJuliaSet:
     msr cpsr_f, r6
     mov lr, r7
 
-    @three condition execution
-    moveq r8, r8
-    movne r8, r8
-    movge r8, r8
-
-    mov r8, #128
-    mov r7, #128
-    mov r9, #6
-    mov r8, r7, lsl #6
-    mov r7, r8, asr #6
-    mov r7, r8, lsl r9
-    mov r8, r7, asr r9
-    @r8 not change
-    mov r8, r8, ror #16
-    mov r8, r8, ror #16
-
 
     @ Stack layout:
     @ [sp, #36] -> frame pointer (arg5)
@@ -60,6 +44,14 @@ drawJuliaSet:
     mov r6, r2
     mov r7, r3
     mov r11, #255
+
+    @three condition execution
+    mov r0, #5
+    cmp r0, #6
+    addlt r1, r1, r2, asr #5
+    cmp r0, #5
+    cmpeq r0, #4
+    subgt r2, r2, r3, lsl r0
 
     @ Outer loop: x = 0 to width-1
     mov r4, #0
